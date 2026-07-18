@@ -1,0 +1,1237 @@
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+    /* Scope all custom styles inside the unique Digitera Root to prevent conflicts with Systeme.io CSS */
+    #digitera-root {
+        font-family: 'Plus Jakarta Sans', sans-serif !important;
+        background-color: #06040c;
+        color: #f1f5f9;
+        line-height: 1.7;
+    }
+
+    /* SYSTEME.IO CLICK RECOVERY CRITICAL CSS CODES - Prevent parent element overlays from blocking links */
+    #digitera-root a,
+    #digitera-root button,
+    #digitera-root select,
+    #digitera-root textarea,
+    #digitera-root input {
+        pointer-events: auto !important;
+    }
+
+    #digitera-root .digitera-tab-btn { 
+        background: rgba(255,255,255,0.02); 
+        border: 1px solid rgba(229,184,66,0.1); 
+        color: #a99ec6; 
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+    }
+
+    #digitera-root .digitera-tab-btn:hover {
+        background: rgba(229,184,66,0.05);
+        border-color: rgba(229,184,66,0.3);
+        color: #ffffff;
+    }
+
+    #digitera-root .digitera-tab-btn.active { 
+        background: #e5b842; 
+        color: #0d091c; 
+        border-color: #e5b842; 
+        box-shadow: 0 4px 20px rgba(229,184,66,0.25); 
+    }
+
+    #digitera-root .digitera-tab-content { 
+        display: none; 
+        animation: digiteraFadeIn 0.4s ease; 
+    }
+
+    #digitera-root .digitera-tab-content.active { 
+        display: block; 
+    }
+
+    #digitera-root .glowing-border {
+        box-shadow: 0 0 30px rgba(229, 184, 66, 0.05);
+    }
+
+    #digitera-root .niche-pill-btn {
+        background: #110d24;
+        border: 1px solid rgba(255,255,255,0.08);
+        transition: all 0.25s ease;
+    }
+    #digitera-root .niche-pill-btn:hover {
+        background: rgba(229,184,66,0.08);
+        border-color: rgba(229,184,66,0.4);
+    }
+    #digitera-root .niche-pill-btn.active {
+        background: rgba(229,184,66,0.15);
+        border-color: #e5b842;
+        box-shadow: 0 0 15px rgba(229,184,66,0.1);
+    }
+
+    @keyframes digiteraFadeIn { 
+        from { opacity: 0; transform: translateY(12px); } 
+        to { opacity: 1; transform: translateY(0); } 
+    }
+
+    /* PRINT AND PDF GENERATION STYLING OVERRIDES */
+    @media print {
+        #digitera-root { 
+            background: #ffffff !important; 
+            color: #000000 !important; 
+            padding: 0 !important; 
+            margin: 0 !important;
+        }
+        #digitera-root .no-print, 
+        #digitera-root .digitera-tab-btn, 
+        #digitera-root #digitera-global-toast, 
+        #digitera-root .print-btn, 
+        #digitera-root .vip-upgrade-card, 
+        #digitera-root .audio-recorder-section,
+        #digitera-root .yellow-upgrade-box,
+        #digitera-root #niche-selector-heading,
+        #digitera-root #niche-button-grid { 
+            display: none !important; 
+        }
+        #digitera-root .digitera-tab-content {
+            display: block !important; 
+        }
+        #digitera-root .container-print-wrapper {
+            box-shadow: none !important; 
+            border-radius: 0 !important; 
+            padding: 0 !important;
+            background: transparent !important;
+            max-width: 100% !important;
+            width: 100% !important;
+        }
+        #digitera-root .header {
+            background: none !important;
+            color: #000000 !important;
+            border-bottom: 3px solid #000000 !important;
+            padding: 20px 0 !important;
+        }
+        #digitera-root .header h1 {
+            color: #000000 !important;
+        }
+        #digitera-root .header p.subtitle, 
+        #digitera-root .header p.author {
+            color: #333333 !important;
+        }
+        #digitera-root .workbench {
+            background-color: #f8fafc !important;
+            color: #000000 !important;
+            border: 1px solid #cbd5e1 !important;
+            page-break-inside: avoid;
+        }
+        #digitera-root textarea { 
+            border: 1px solid #94a3b8 !important; 
+            background: #ffffff !important; 
+            color: #000000 !important; 
+        }
+        #digitera-root .image-container img {
+            border: 1px solid #000000 !important;
+            max-height: 250px !important;
+        }
+        #digitera-root .page-break { 
+            page-break-before: always !important; 
+        }
+        #digitera-root .link-card, 
+        #digitera-root .freebies-box, 
+        #digitera-root .scaling-box {
+            border: 1px solid #cbd5e1 !important;
+            background: #f8fafc !important;
+            color: #000000 !important;
+            page-break-inside: avoid;
+        }
+        #digitera-root .link-btn, 
+        #digitera-root .scaling-btn {
+            border: 1px solid #000000 !important;
+            background: #ffffff !important;
+            color: #000000 !important;
+        }
+    }
+</style>
+
+<div id="digitera-root" class="w-full min-h-screen py-10 px-4 sm:px-6">
+
+    <div class="max-w-[850px] mx-auto mb-6 no-print">
+        <div class="bg-[#0d091c] border border-[#e5b842]/30 rounded-2xl p-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <span class="relative flex h-3.5 w-3.5">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-emerald-500"></span>
+                </span>
+                <span class="text-xs font-black text-[#e5b842] tracking-wider uppercase">✨ LIVE FILLABLE DIGITAL WORKBOOK MODE</span>
+            </div>
+            <button onclick="window.print()" class="w-full sm:w-auto bg-[#e5b842] text-[#0d091c] font-black text-xs px-6 py-3 rounded-xl uppercase tracking-wider hover:opacity-90 transition duration-200">
+                📥 Save / Print PDF Workbook
+            </button>
+        </div>
+    </div>
+
+    <div class="max-w-[850px] mx-auto mb-8 p-8 sm:p-12 bg-gradient-to-br from-[#120d24] via-[#0d091c] to-[#06040c] border-b-[8px] border-[#e5b842] rounded-3xl text-center shadow-2xl relative overflow-hidden glowing-border header">
+        <div class="absolute -top-24 -left-24 w-48 h-48 bg-[#e5b842] opacity-5 blur-[100px] rounded-full"></div>
+        <div class="absolute -bottom-24 -right-24 w-48 h-48 bg-[#7c3aed] opacity-5 blur-[100px] rounded-full"></div>
+        
+        <h1 class="text-3xl sm:text-5xl font-black text-white uppercase tracking-tight leading-tight">
+            The ROI Framework <br>& Workbook
+        </h1>
+        <p class="text-xs sm:text-sm text-[#ddd6fe] max-w-[650px] mx-auto mt-4 leading-relaxed tracking-widest uppercase font-light">
+            The Automated Storefront & Content System • Daily Execution Toolkit
+        </p>
+        <p class="text-sm font-black text-[#e5b842] uppercase tracking-widest mt-6">
+            By Digitera Levi
+        </p>
+    </div>
+
+    <div class="max-w-[850px] mx-auto mb-8 grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 no-print">
+        <button class="digitera-tab-btn active py-4 px-2 rounded-xl text-[10px] sm:text-xs font-extrabold tracking-wider uppercase flex flex-col sm:flex-row items-center justify-center gap-2" onclick="switchOrganicTab(event, 'tab-workbook')">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+            <span>📖 Workbook</span>
+        </button>
+        <button class="digitera-tab-btn py-4 px-2 rounded-xl text-[10px] sm:text-xs font-extrabold tracking-wider uppercase flex flex-col sm:flex-row items-center justify-center gap-2" onclick="switchOrganicTab(event, 'tab-roadmaps')">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg>
+            <span>🗺️ AI Roadmaps</span>
+        </button>
+        <button class="digitera-tab-btn py-4 px-2 rounded-xl text-[10px] sm:text-xs font-extrabold tracking-wider uppercase flex flex-col sm:flex-row items-center justify-center gap-2" onclick="switchOrganicTab(event, 'tab-engines')">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+            <span>⚡ Engines</span>
+        </button>
+        <button class="digitera-tab-btn py-4 px-2 rounded-xl text-[10px] sm:text-xs font-extrabold tracking-wider uppercase flex flex-col sm:flex-row items-center justify-center gap-2" onclick="switchOrganicTab(event, 'tab-vault')">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 4H6a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-2m-4-1v8m0 0l3-3m-3 3L9 8m-5 5h2.586a1 1 0 01.707.293l2.414 2.414a1 1 0 00.707.293h3.172a1 1 0 00.707-.293l2.414-2.414a1 1 0 01.707-.293H20"></path></svg>
+            <span>🎁 Vault</span>
+        </button>
+    </div>
+
+    <div id="tab-workbook" class="digitera-tab-content active max-w-[850px] mx-auto space-y-12 container-print-wrapper">
+
+        <div class="border-b border-white/10 pb-4">
+            <span class="inline-block bg-[#e5b842]/10 border border-[#e5b842] text-[#e5b842] px-3 py-1 rounded text-[10px] font-black uppercase">Phase 1</span>
+            <h2 class="text-2xl font-black text-white mt-2 uppercase tracking-wide">The Foundation & Mindset</h2>
+        </div>
+
+        <div class="space-y-6">
+            <h3 class="text-lg sm:text-xl font-bold text-[#e5b842] uppercase tracking-wide">Chapter 1: The Death of Feature-Based Selling</h3>
+            <p class="text-sm leading-relaxed text-slate-300 text-justify">
+                <strong>1.1 The Boring Truth About Feature Selling:</strong> If all you post is a list of template counts, checklists, and page numbers in your e-book, you're triggering the logical part of your buyer's brain. Logic looks for reasons to be cheap and go search for a free version on Google instead.
+            </p>
+            <p class="text-sm leading-relaxed text-slate-300 text-justify">
+                <strong>1.2 The Shift to Transformation:</strong> People don't buy files sitting in Google Drive; they buy the result, the relief, and the time they get back. Instead of selling an "80k Reels bundle," sell the fact that they'll never have to stress about filming their face or editing every single day again.
+            </p>
+            <div class="image-container text-center py-4">
+                <img src="https://i.postimg.cc/5NLKR96X/Woman-working-on-laptop-coffee-202606151111.jpg" alt="[Babaeng nagtatrabaho sa laptop habang nagkakape]" class="w-full max-h-[400px] object-cover rounded-2xl border-2 border-[#e5b842]/40 shadow-xl">
+                <p class="text-xs text-slate-500 italic mt-2">Fig 1: Shifting from tedious feature selling to elegant location-independent productivity.</p>
+            </div>
+            <p class="text-sm leading-relaxed text-slate-300 text-justify">
+                <strong>1.3 Brutal Honesty: The Entitlement Trap:</strong> Let's be blunt: 90% of people who buy any kit will never make a peso from it, because of laziness. They want instant sales in their GCash but complain the moment you teach them how to set up Systeme.io and Botcake. Digital business rewards an entrepreneur's mindset, not a lottery-ticket mindset.
+            </p>
+            <p class="text-sm leading-relaxed text-slate-300 text-justify">
+                <strong>1.4 Lottery Ticket Mentality vs. Systems Execution:</strong> Posting one Reel today and hoping for a sale tomorrow is a fundamentally broken mindset. Real success comes from a system of relentlessly testing different hooks, day after day, for 30 to 90 days straight.
+            </p>
+            <p class="text-sm leading-relaxed text-slate-300 text-justify">
+                <strong>1.5 The Customer Selfishness Rule:</strong> Your customer doesn't care about your bills. The only question running through their head is: "What's in it for ME? How does this fix my exhaustion?" Stop begging in your posts — position yourself as the one solution to their headache instead.
+            </p>
+
+            <div class="workbench bg-gradient-to-br from-[#120d24] to-[#0d091c] p-6 rounded-2xl border-b-4 border-[#e5b842]">
+                <div class="flex items-center gap-2 mb-3">
+                    <span class="bg-[#e5b842] text-[#0d091c] text-[10px] font-black px-2 py-0.5 rounded uppercase">Interactive Studio</span>
+                    <h4 class="text-sm font-bold text-[#e5b842] uppercase tracking-wide">🛠️ Chapter 1 Workspace: The Transformation Map</h4>
+                </div>
+                <div class="bg-black/40 border border-white/5 p-3 rounded-lg text-xs font-mono text-emerald-400 leading-relaxed mb-4 no-print select-all">
+                    <span class="text-[#e5b842] font-black block mb-1">🤖 COPY-PASTE CHATGPT TRANSFORMATION MAP PROMPT:</span>
+                    Act as a direct-response copywriting expert. I have a digital product with this feature: "[Insert your feature]". Convert this feature into 3 different "Transformation-Based" sales angles, focused on saving months of manual work and burnout, in highly persuasive modern direct-response English.
+                </div>
+                <label class="block text-xs font-bold text-slate-300 uppercase mb-2">Write Your Own Transformation Map (or Paste the AI Output):</label>
+                <textarea rows="4" class="w-full bg-[#06040c] border border-white/10 rounded-xl p-3 text-slate-200 text-xs sm:text-sm focus:outline-none focus:border-[#e5b842]" placeholder="Click here to type... What's your boring feature, and how will you translate it into your customer's emotion or relief?"></textarea>
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+        <div class="space-y-6 pt-6">
+            <h3 class="text-lg sm:text-xl font-bold text-[#e5b842] uppercase tracking-wide">Chapter 2: Mapping the 4 Core High-Ticket Drivers</h3>
+            <p class="text-sm leading-relaxed text-slate-300 text-justify">
+                <strong>2.1 Why the Money Flows in High-Ticket Offers:</strong> People are willing to pay big when your offer directly elevates their personal status, or gives them immediate relief from pain.
+            </p>
+            <p class="text-sm leading-relaxed text-slate-300 text-justify">
+                <strong>2.2 The Time Collapse Concept:</strong> You're selling a shortcut. Instead of burning six months learning to code or configure tech, their storefront goes live and ready in 5 minutes using your pre-built templates.
+            </p>
+            <div class="image-container text-center py-4">
+                <img src="https://i.postimg.cc/L6LQb4n6/Laptop-with-watch-and-passports-202606151113.jpg" alt="[Laptop na may relo at pasaporte]" class="w-full max-h-[400px] object-cover rounded-2xl border-2 border-[#e5b842]/40 shadow-xl">
+                <p class="text-xs text-slate-500 italic mt-2">Fig 2: Unlocking elite entrepreneur status and collapsed timeframes.</p>
+            </div>
+            <p class="text-sm leading-relaxed text-slate-300 text-justify">
+                <strong>2.3 Vitamin Pills vs. Emergency Painkillers:</strong> General knowledge is like a vitamin — nice to have, but never urgent. "An automated storefront in 5 minutes" is a painkiller. People will hand over their last peso faster for immediate pain relief than for a vitamin.
+            </p>
+            <p class="text-sm leading-relaxed text-slate-300 text-justify">
+                <strong>2.4 A Frictionless Experience for the Lazy Buyer:</strong> Every extra step, click, or form on your storefront cuts your sales by 20%. It should take just one click from checkout to automatic email delivery.
+            </p>
+            <p class="text-sm leading-relaxed text-slate-300 text-justify">
+                <strong>2.5 Meta Ads Algorithm Reality Check:</strong> There's no magic setup inside Facebook Ads Manager. The algorithm is simply a mirror of your video and hook quality. If you're too lazy to test creatives, your ad spend will genuinely burn to zero.
+            </p>
+
+            <div class="workbench bg-gradient-to-br from-[#120d24] to-[#0d091c] p-6 rounded-2xl border-b-4 border-[#e5b842]">
+                <div class="flex items-center gap-2 mb-3">
+                    <span class="bg-[#e5b842] text-[#0d091c] text-[10px] font-black px-2 py-0.5 rounded uppercase">Interactive Studio</span>
+                    <h4 class="text-sm font-bold text-[#e5b842] uppercase tracking-wide">🛠️ Chapter 2 Workspace: Driver Scorecard Canvas</h4>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 uppercase mb-2">Your Status Pivot Angle:</label>
+                        <textarea rows="3" class="w-full bg-[#06040c] border border-white/10 rounded-xl p-3 text-slate-200 text-xs sm:text-sm focus:outline-none focus:border-[#e5b842]" placeholder="How does your buyer's personal status change once they start using your system?"></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 uppercase mb-2">Your Time-Collapse Speed:</label>
+                        <textarea rows="3" class="w-full bg-[#06040c] border border-white/10 rounded-xl p-3 text-slate-200 text-xs sm:text-sm focus:outline-none focus:border-[#e5b842]" placeholder="What long, painful process do you instantly erase or shortcut for them?"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+        <div class="border-b border-white/10 pb-4 pt-6">
+            <span class="inline-block bg-[#e5b842]/10 border border-[#e5b842] text-[#e5b842] px-3 py-1 rounded text-[10px] font-black uppercase">Phase 2</span>
+            <h2 class="text-2xl font-black text-white mt-2 uppercase tracking-wide">The Backbone & Content Engine</h2>
+        </div>
+
+        <div class="space-y-6">
+            <h3 class="text-lg sm:text-xl font-bold text-[#e5b842] uppercase tracking-wide">Chapter 3: The 5-Part "Authentic Connection" Story Matrix</h3>
+            <p class="text-sm leading-relaxed text-slate-300 text-justify">
+                <strong>3.1 The Psychology of Storytelling in Sales:</strong> The modern digital buyer has a razor-sharp hype radar. The lazy approach is a fabricated lifestyle — the real approach is a story with distinct, memorable, and completely unfiltered honest moments.
+            </p>
+            <p class="text-sm leading-relaxed text-slate-300 text-justify">
+                <strong>3.2 The Danger of 'Fake It Till You Make It':</strong> Lies have a smell. The moment your market discovers you've been borrowing someone else's income dashboards without disclosure, your reputation burns instantly.
+            </p>
+            <div class="image-container text-center py-4">
+                <img src="https://i.postimg.cc/jdP3FqLC/Cafe-table-with-latte-planner-202606151108.jpg" alt="[Mesa sa cafe na may latte at planner]" class="w-full max-h-[400px] object-cover rounded-2xl border-2 border-[#e5b842]/40 shadow-xl">
+                <p class="text-xs text-slate-500 italic mt-2">Fig 3: Designing real and vulnerable narratives that build bulletproof buyer trust.</p>
+            </div>
+            <p class="text-sm leading-relaxed text-slate-300 text-justify">
+                <strong>3.3 Victim vs. Victor Story Framework:</strong> The lazy copywriter posts drama to farm sympathy ("just trying to buy milk for my kid"). The Victor mindset shows the wound but leads with the win: "I started at zero sales, then I used this exact system to automate everything."
+            </p>
+            <p class="text-sm leading-relaxed text-slate-300 text-justify">
+                <strong>3.4 Building Emotional Alignment:</strong> Show the emotional transition — from the feeling of hopelessness to the calm confidence of a system running on autopilot.
+            </p>
+            <p class="text-sm leading-relaxed text-slate-300 text-justify">
+                <strong>3.5 The Truth Behind 'Instant Trust':</strong> Admitting your product's limitation (e.g. it won't make you a millionaire overnight, but you'll have a finished, working system) is the single most disarming thing you can say to a skeptical buyer.
+            </p>
+
+            <div class="workbench bg-gradient-to-br from-[#120d24] to-[#0d091c] p-6 rounded-2xl border-b-4 border-[#e5b842]">
+                <div class="flex items-center gap-2 mb-3">
+                    <span class="bg-[#e5b842] text-[#0d091c] text-[10px] font-black px-2 py-0.5 rounded uppercase">Interactive Studio</span>
+                    <h4 class="text-sm font-bold text-[#e5b842] uppercase tracking-wide">🛠️ Chapter 3 Workspace: Brand Story Blueprint</h4>
+                </div>
+                <div class="bg-black/40 border border-white/5 p-3 rounded-lg text-xs font-mono text-emerald-400 leading-relaxed mb-4 no-print select-all">
+                    <span class="text-[#e5b842] font-black block mb-1">🤖 COPY-PASTE CHATGPT STORY MASTER PROMPT:</span>
+                    Act as a master storyteller. Write an authentic brand narrative in modern direct-response English based on these inputs: 1. Status Quo: Manual chat 24/7, 2. Catalyst: Burnout, 3. Struggle: Ghosting, 4. Epiphany: Automated Storefront, 5. Invitation: Offer at ₱499. Make it raw.
+                </div>
+                <label class="block text-xs font-bold text-slate-300 uppercase mb-2">Write Your Brand Narrative Canvas:</label>
+                <textarea rows="4" class="w-full bg-[#06040c] border border-white/10 rounded-xl p-3 text-slate-200 text-xs sm:text-sm focus:outline-none focus:border-[#e5b842]" placeholder="Click here and type your own story using the 5-Step Matrix above..."></textarea>
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+        <div class="space-y-6 pt-6">
+            <h3 class="text-lg sm:text-xl font-bold text-[#e5b842] uppercase tracking-wide">Chapter 4: The Hook, Story, Offer (HSO) Framework</h3>
+            <p class="text-sm leading-relaxed text-slate-300 text-justify">
+                <strong>4.1 The 3-Second Attention Filter:</strong> You have exactly three seconds to stop a scroller. Start with "Hi guys, let me show you my product" and you've already lost them.
+            </p>
+            <p class="text-sm leading-relaxed text-slate-300 text-justify">
+                <strong>4.2 Hook Engineering and Negative Framing:</strong> The human brain moves faster to avoid pain than to chase reward. Use hooks like: "The real reason you're losing sleep replying to chats — and your GCash is still at zero."
+            </p>
+            <div class="image-container text-center py-4">
+                <img src="https://i.postimg.cc/TYgN42pp/Smartphone-notification-on-beach-202606151107.jpg" alt="[Notipikasyon sa smartphone sa may beach]" class="w-full max-h-[400px] object-cover rounded-2xl border-2 border-[#e5b842]/40 shadow-xl">
+                <p class="text-xs text-slate-500 italic mt-2">Fig 4: Converting casual scrolling viewers into instant backend customers.</p>
+            </div>
+            <p class="text-sm leading-relaxed text-slate-300 text-justify">
+                <strong>4.3 Micro-Nurturing in the Comments Section:</strong> The real battle happens in the comments. Instead of a generic "PM sent," leave a genuinely thoughtful reply so other scrollers notice it too.
+            </p>
+            <p class="text-sm leading-relaxed text-slate-300 text-justify">
+                <strong>4.4 Micro-Action Triggers for Conversion:</strong> Your buyer is lazy. Instead of a long instruction pointing to your link in bio, give them one simple word to type: "Just comment 'SYSTEM' below."
+            </p>
+            <p class="text-sm leading-relaxed text-slate-300 text-justify">
+                <strong>4.5 The Algorithm's Inconsistency Penalty:</strong> Post today, then disappear for three days because you lost motivation — the system punishes you for it. You need continuous momentum, day after day.
+            </p>
+
+            <div class="workbench bg-gradient-to-br from-[#120d24] to-[#0d091c] p-6 rounded-2xl border-b-4 border-[#e5b842]">
+                <div class="flex items-center gap-2 mb-3">
+                    <span class="bg-[#e5b842] text-[#0d091c] text-[10px] font-black px-2 py-0.5 rounded uppercase">Interactive Studio</span>
+                    <h4 class="text-sm font-bold text-[#e5b842] uppercase tracking-wide">🛠️ Chapter 4 Workspace: Micro-Reel Scriptwriter</h4>
+                </div>
+                <div class="bg-black/40 border border-white/5 p-3 rounded-lg text-xs font-mono text-emerald-400 leading-relaxed mb-4 no-print select-all">
+                    <span class="text-[#e5b842] font-black block mb-1">🤖 COPY-PASTE CHATGPT HSO REEL PROMPT:</span>
+                    Write 3 short-form video scripts (under 30 seconds) in casual modern English for Reels. Use the Hook, Story, Offer structure. Focus on relief from manual chatting and the speed of getting a storefront live.
+                </div>
+                <label class="block text-xs font-bold text-slate-300 uppercase mb-2">Write Your Own Reel Script (Hook - Story - Offer):</label>
+                <textarea rows="4" class="w-full bg-[#06040c] border border-white/10 rounded-xl p-3 text-slate-200 text-xs sm:text-sm focus:outline-none focus:border-[#e5b842]" placeholder="Click here and write your own 30-second video script based on the example above..."></textarea>
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+        <div class="space-y-6 pt-6">
+            <h3 class="text-lg sm:text-xl font-bold text-[#e5b842] uppercase tracking-wide">Chapter 5: The Ultimate Taglish Swipe File Vault</h3>
+            <p class="text-sm leading-relaxed text-slate-300 text-justify">
+                <strong>5.1 The Copy-and-Paste Illusion:</strong> Use swipe files as a skeleton or guide, but inject your own character and voice into every line so it feels like a real person on the other end.
+            </p>
+            <p class="text-sm leading-relaxed text-slate-300 text-justify">
+                <strong>5.2 How to Handle Objections in Your Caption:</strong> Face the buyer's fear head-on ("Why is the price so low?") with the direct truth: you refuse to charge them thousands for the same recycled course everyone else is selling.
+            </p>
+            <div class="image-container text-center py-4">
+                <img src="https://i.postimg.cc/jdP3FqLC/Cafe-table-with-latte-planner-202606151108.jpg" alt="[Mesa ng Planner ng Diskarte]" class="w-full max-h-[400px] object-cover rounded-2xl border-2 border-[#e5b842]/40 shadow-xl">
+                <p class="text-xs text-slate-500 italic mt-2">Fig 5: Unlocking copy-paste assets that generate frictionless storefront revenue.</p>
+            </div>
+            <p class="text-sm leading-relaxed text-slate-300 text-justify">
+                <strong>5.3 Swipe Library: Aggressive & Direct Template:</strong> Wake up your daydreaming, sleeping market with this exact formula: "Want the income but too lazy to study and post every day? 😴 There's no magic button here... But if you want a DONE-FOR-YOU system so you're never lost again... Comment 'SYSTEM' and I'll send it straight to your DMs."
+            </p>
+
+            <div class="workbench bg-gradient-to-br from-[#120d24] to-[#0d091c] p-6 rounded-2xl border-b-4 border-[#e5b842]">
+                <div class="flex items-center gap-2 mb-4 border-b border-white/5 pb-3">
+                    <span class="bg-[#e5b842] text-[#0d091c] text-[10px] font-black px-2 py-0.5 rounded uppercase">Interactive Studio</span>
+                    <h4 class="text-sm font-bold text-[#e5b842] uppercase tracking-wide">🛠️ Chapter 5 Workspace: AI Caption Generator (Customizable)</h4>
+                </div>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <label class="block text-[11px] font-black text-slate-300 uppercase mb-2">1. Product Name You're Selling (e.g., Canva Kit, Kids Bundle):</label>
+                        <input type="text" id="ch5UserProduct" value="Kids Learning Materials Bundle" oninput="updateChapter5Prompt()" class="w-full bg-[#06040c] border border-[#e5b842]/30 text-white rounded-xl p-3 text-xs sm:text-sm focus:outline-none focus:border-[#e5b842] font-semibold">
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-black text-slate-300 uppercase mb-2">2. Your Product Price (e.g., 299, 499):</label>
+                        <input type="text" id="ch5UserPrice" value="299" oninput="updateChapter5Prompt()" class="w-full bg-[#06040c] border border-[#e5b842]/30 text-white rounded-xl p-3 text-xs sm:text-sm focus:outline-none focus:border-[#e5b842] font-semibold">
+                    </div>
+                </div>
+
+                <div class="bg-black/50 border border-[#e5b842]/30 p-4 rounded-xl text-xs font-mono text-emerald-400 leading-relaxed mb-4 no-print relative">
+                    <span class="text-[#e5b842] font-black block mb-2 uppercase tracking-widest text-[10px]">🤖 LIVE AUTO-CUSTOMIZED CHATGPT CAPTION PROMPT:</span>
+                    <div id="ch5PromptOutput" class="text-slate-200 leading-normal mb-3 select-all bg-black/30 p-3 rounded-lg border border-white/5 whitespace-pre-wrap">Act as a brutally honest sales copywriter. I am selling a ₱299 Kids Learning Materials Bundle. Write 3 highly engaging captions in modern direct-response English. Start with a hard-hitting hook exposing laziness using an Open Loop.</div>
+                    <button onclick="copyCh5Prompt()" class="w-full py-2.5 bg-emerald-500 hover:bg-emerald-600 text-black font-black text-[11px] uppercase rounded-lg transition tracking-wider">
+                        📋 Copy Customized Prompt
+                    </button>
+                </div>
+
+                <label class="block text-xs font-bold text-slate-300 uppercase mb-2">Write / Draft Your Custom Caption Output Here:</label>
+                <textarea rows="4" class="w-full bg-[#06040c] border border-white/10 rounded-xl p-3 text-slate-200 text-xs sm:text-sm focus:outline-none focus:border-[#e5b842]" placeholder="Paste your ChatGPT-generated captions here so you don't lose them..."></textarea>
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+        <div class="vip-upgrade-card bg-gradient-to-br from-[#260e1d] via-[#0d091c] to-[#06040c] border-2 border-dashed border-[#ff477e] rounded-3xl p-6 sm:p-8 shadow-2xl relative overflow-hidden no-print">
+            <div class="absolute top-0 right-0 bg-[#ff477e] text-black font-black text-[9px] uppercase px-4 py-1 rounded-bl-xl tracking-widest animate-pulse">🔒 SYSTEM UPGRADE REQUIRED</div>
+            <div class="flex items-center gap-3 mb-4">
+                <span class="text-3xl">🛑</span>
+                <h3 class="text-base sm:text-lg font-black text-[#ff477e] uppercase tracking-wide">You're Missing Out on the Advanced Automation Engines!</h3>
+            </div>
+            <p class="text-xs text-slate-300 mb-4 leading-relaxed">
+                Your current access covers the <strong>₱499 Standard Framework</strong> only. Skip unlocking your VIP Command Deck, and you'll stay stuck doing everything manually — missing out on the newest scaling tools and premium system structures below:
+            </p>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6 text-[11px] text-slate-400">
+                <div class="block bg-black/40 p-4 rounded-xl border border-white/5 cursor-not-allowed opacity-80 relative">
+                    <span class="absolute top-3 right-3 text-sm text-[#ff477e]">🔒</span>
+                    <strong class="text-slate-400 block mb-0.5 text-xs font-black uppercase flex items-center gap-1.5">
+                        <span>❌ Engine 7-B: 15-Color Website Generator</span>
+                    </strong>
+                    <span class="text-slate-500">You'll miss the automatic, pre-made conversion designs for building aesthetic landing pages in Systeme.io — no design skills required. <strong class="text-[#ff477e] text-[10px] block mt-1">(🔒 LOCKED — No Link)</strong></span>
+                </div>
+                
+                <a href="https://learnandearnsystem.systeme.io/kidzcreator" target="_blank" rel="noopener noreferrer" class="block bg-black/40 p-4 rounded-xl border border-white/5 hover:border-[#ff477e]/50 hover:bg-[#ff477e]/5 transition duration-300">
+                    <strong class="text-white block mb-0.5 text-xs font-black uppercase hover:text-[#ff477e] transition flex items-center gap-1.5">
+                        <span>❌ KidzCreator PLR System Portal</span>
+                        <svg class="w-3.5 h-3.5 text-[#ff477e]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                    </strong>
+                    <span class="text-slate-400">Locked access to high-converting kids assets and <strong>Editable Videos</strong> you can use on your YouTube channel or monetize across any social platform to build a stable passive income stream.</span>
+                </a>
+                
+                <a href="https://digiteralevi.systeme.io/doneforyou-6f82e569-232b7b6e-b8b13fbc-1536c416" target="_blank" rel="noopener noreferrer" class="block bg-black/40 p-4 rounded-xl border border-white/5 hover:border-[#ff477e]/50 hover:bg-[#ff477e]/5 transition duration-300">
+                    <strong class="text-white block mb-0.5 text-xs font-black uppercase hover:text-[#ff477e] transition flex items-center gap-1.5">
+                        <span>❌ 1 Hybrid Chat-to-Cash Automation</span>
+                        <svg class="w-3.5 h-3.5 text-[#ff477e]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                    </strong>
+                    <span class="text-slate-400">No access to the Botcake master chatbot workflows, premium <strong>International Facebook Group Lists</strong> for massive foreign sales reach, and the essential <strong>High-Income Skills</strong> you could offer as a service to premium clients.</span>
+                </a>
+                
+                <div class="block bg-black/40 p-4 rounded-xl border border-white/5 cursor-not-allowed opacity-80 relative">
+                    <span class="absolute top-3 right-3 text-sm text-[#ff477e]">🔒</span>
+                    <strong class="text-slate-400 block mb-0.5 text-xs font-black uppercase flex items-center gap-1.5">
+                        <span>❌ Engine 8: 48-Hour Ad Profit-Protector</span>
+                    </strong>
+                    <span class="text-slate-500">Missing the advanced analytical rule parameters that protect your storefront budget from algorithm anomalies down the line. <strong class="text-[#ff477e] text-[10px] block mt-1">(🔒 LOCKED — No Link)</strong></span>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <a href="https://www.raket.ph/digiteralevi/products/automated-hybrid-system-digital-product?src=share" target="_blank" rel="noopener noreferrer" class="inline-block w-full bg-gradient-to-r from-[#ff477e] to-[#ff7096] text-white font-black text-xs py-4 px-6 rounded-xl uppercase tracking-wider hover:opacity-90 transition duration-200 shadow-xl shadow-[#ff477e]/10 text-center">
+                    👑 UNLOCK THE FULL VIP AUTOMATION SYSTEM UPGRADE NOW
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="tab-roadmaps" class="digitera-tab-content max-w-[850px] mx-auto space-y-6">
+        <div class="bg-gradient-to-br from-[#120d24] to-[#0d091c] border-2 border-[#e5b842] rounded-3xl p-6 sm:p-8 glowing-border">
+            <div class="text-center mb-6">
+                <span class="bg-[#e5b842]/10 border border-[#e5b842]/30 text-[#e5b842] text-[10px] font-black uppercase px-3.5 py-1.5 rounded-full tracking-wider">🗺️ Special Tool: Digitera Core App</span>
+                <h2 class="text-xl sm:text-2xl font-black text-white uppercase mt-4">12-Niche AI Roadmap Builder</h2>
+                <p class="text-slate-400 text-xs mt-2 max-w-[600px] mx-auto leading-relaxed">
+                    Pumili sa 12 specialized niches sa ibaba para mag-load ang production roadmap at custom AI generator prompt na swak sa iyong storefront model.
+                </p>
+            </div>
+
+            <div id="niche-selector-heading" class="mb-4 text-xs font-black text-slate-300 uppercase tracking-widest">Step 01: Select Your Product Niche</div>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2.5 mb-8" id="niche-button-grid">
+                </div>
+
+            <div class="border-t border-white/10 pt-6" id="niche-showcase-container">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    
+                    <div class="bg-black/40 border border-white/10 rounded-2xl p-5 flex flex-col justify-between">
+                        <div>
+                            <div class="text-xs font-black text-[#e5b842] uppercase tracking-wider mb-4 flex items-center gap-2">
+                                <span>📋</span> <span id="roadmap-title-heading">Production Roadmap Tasks:</span>
+                            </div>
+                            <ul id="roadmap-tasks-list" class="space-y-3.5 text-xs text-slate-300 list-none pl-0 leading-relaxed">
+                                </ul>
+                        </div>
+                    </div>
+
+                    <div class="bg-black/40 border border-white/10 rounded-2xl p-5 flex flex-col justify-between">
+                        <div>
+                            <div class="text-xs font-black text-sky-400 uppercase tracking-wider mb-1 flex items-center gap-2">
+                                <span>🤖</span> <span>Copy-Paste AI Code Prompt:</span>
+                            </div>
+                            <div class="text-[10px] text-slate-400 font-medium mb-4 leading-normal">
+                                Recommended AI Tools: Paste this prompt inside <span class="text-emerald-300 font-bold">Claude 3.5 Sonnet (Artifacts)</span>, <span class="text-emerald-300 font-bold">ChatGPT Plus</span>, or <span class="text-emerald-300 font-bold">DeepSeek R1</span>.
+                            </div>
+                            <textarea id="niche-prompt-textarea" readonly class="w-full h-[200px] bg-[#020617] border border-white/5 rounded-xl p-3.5 text-[#a7f3d0] font-mono text-[10px] leading-relaxed resize-none focus:outline-none select-all"></textarea>
+                        </div>
+                        <button onclick="copyNichePromptAction()" class="w-full bg-[#e5b842] hover:bg-[#d8a932] text-[#0d091c] font-black text-xs py-3.5 rounded-xl uppercase tracking-wider transition-all duration-300 mt-4">Copy Prompt to Clipboard 📋</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="tab-engines" class="digitera-tab-content max-w-[850px] mx-auto space-y-6">
+
+        <div class="bg-gradient-to-br from-[#120d24] to-[#0d091c] border border-white/5 rounded-2xl p-6 sm:p-8 glowing-border">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 rounded-xl bg-[#e5b842]/10 text-[#e5b842] flex items-center justify-center font-bold">📊</div>
+                <div>
+                    <h3 class="text-base sm:text-lg font-bold text-[#e5b842] uppercase tracking-wide">ENGINE 1: Storefront Profit Simulator</h3>
+                    <p class="text-xs text-slate-400 mt-0.5">Calculate your monthly income based on your organic sales target.</p>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5 mt-6">
+                <div>
+                    <label class="text-xs text-[#a99ec6] block mb-2 font-medium">Product Price (₱):</label>
+                    <input type="number" id="orgPrice" value="499" oninput="calcOrganicSim()" class="w-full p-3.5 bg-[#06040c] border border-[#e5b842]/30 text-[#e5b842] font-bold rounded-xl focus:outline-none focus:border-[#e5b842] transition text-sm">
+                </div>
+                <div>
+                    <label class="text-xs text-[#a99ec6] block mb-2 font-medium">Target Sales Volume (Per Month):</label>
+                    <input type="number" id="orgVol" value="100" oninput="calcOrganicSim()" class="w-full p-3.5 bg-[#06040c] border border-white/10 text-white font-bold rounded-xl focus:outline-none focus:border-purple-500 transition text-sm">
+                </div>
+            </div>
+            <div class="bg-black/40 p-5 rounded-xl border border-white/5 text-center">
+                <span class="text-[11px] text-[#a99ec6] uppercase tracking-wider block mb-1">Target Monthly Gross Revenue:</span>
+                <span id="orgOutGross" class="text-3xl font-black text-[#34d399]">₱49,900</span>
+            </div>
+        </div>
+
+        <div class="bg-gradient-to-br from-[#120d24] to-[#0d091c] border border-white/5 rounded-2xl p-6 sm:p-8 glowing-border">
+            <div class="flex items-center gap-3 mb-4 border-b border-white/5 pb-4">
+                <div class="w-10 h-10 rounded-xl bg-[#e5b842]/10 text-[#e5b842] flex items-center justify-center text-lg">🏦</div>
+                <div>
+                    <h3 class="text-base sm:text-lg font-bold text-[#e5b842] uppercase tracking-wide">ENGINE 3: ROI Valuation Vault</h3>
+                    <p class="text-xs text-slate-400 mt-0.5">Enter your product and price to calculate custom conversion revenue projections.</p>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-6">
+                <div class="space-y-4">
+                    <div>
+                        <label class="text-xs text-[#a99ec6] block mb-1.5 font-bold uppercase tracking-wide">1. Your Product Name:</label>
+                        <input type="text" id="vaultProductName" value="Kids Learning Bundles PLR" oninput="runVaultCalculator()" placeholder="Hal. Canva Mockup Assets, Busy Books" class="w-full p-3 bg-[#06040c] border border-white/10 text-white rounded-xl focus:outline-none focus:border-[#e5b842] text-xs sm:text-sm transition">
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
+                            <label class="text-xs text-[#a99ec6] block mb-1.5 font-bold uppercase tracking-wide">2. Price (₱):</label>
+                            <input type="number" id="vaultProductPrice" value="299" oninput="runVaultCalculator()" placeholder="299" class="w-full p-3 bg-[#06040c] border border-white/10 text-[#e5b842] font-black rounded-xl focus:outline-none focus:border-[#e5b842] text-xs sm:text-sm transition">
+                        </div>
+                        <div>
+                            <label class="text-xs text-[#a99ec6] block mb-1.5 font-bold uppercase tracking-wide">3. Sales Per Day:</label>
+                            <input type="number" id="vaultDailySales" value="5" oninput="runVaultCalculator()" placeholder="5" class="w-full p-3 bg-[#06040c] border border-white/10 text-white rounded-xl focus:outline-none focus:border-purple-500 text-xs sm:text-sm transition">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-[#06040c] p-6 rounded-2xl border border-[#e5b842]/20 flex flex-col justify-between">
+                    <div>
+                        <span class="text-[9px] bg-[#e5b842]/10 text-[#e5b842] px-2.5 py-0.5 rounded font-black uppercase tracking-widest inline-block mb-3">📈 LIVE SIMULATION REPORT</span>
+                        <h4 id="vaultLabelProduct" class="text-xs font-bold text-white uppercase truncate mb-4">Kids Learning Bundles PLR</h4>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-4 border-t border-white/5 pt-4">
+                        <div>
+                            <span class="text-[10px] text-slate-400 uppercase block mb-0.5">Daily Gross:</span>
+                            <div id="vaultOutDaily" class="text-lg font-bold text-slate-200">₱1,495</div>
+                        </div>
+                        <div>
+                            <span class="text-[10px] text-[#e5b842] uppercase block mb-0.5">30-Day Projection:</span>
+                            <div id="orgVaultOut" class="text-2xl font-black text-[#e5b842]">₱44,850</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-gradient-to-br from-[#120d24] to-[#0d091c] border border-white/5 rounded-2xl p-6 sm:p-8 glowing-border">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 rounded-xl bg-[#e5b842]/10 text-[#e5b842] flex items-center justify-center">🎬</div>
+                <div>
+                    <h3 class="text-base sm:text-lg font-bold text-[#e5b842] uppercase tracking-wide">ENGINE 5: Custom Script Matrix Generator</h3>
+                    <p class="text-xs text-slate-400 mt-0.5">Customize the script to make sure you have zero competitors in the market.</p>
+                </div>
+            </div>
+            <p class="text-xs text-slate-400 mb-6 border-b border-white/5 pb-4">
+                Fill in your product details to build a dynamic script that's 100% customized to your offer!
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+                <div>
+                    <label class="text-[11px] text-[#a99ec6] block mb-2 uppercase font-semibold">1. What's Your Product?</label>
+                    <input type="text" id="userProduct" value="Premium Budget Planner" oninput="generateDynamicOrganicScript()" class="w-full p-3 bg-[#06040c] border border-white/10 rounded-lg text-white text-xs focus:outline-none focus:border-[#e5b842]">
+                </div>
+                <div>
+                    <label class="text-[11px] text-[#a99ec6] block mb-2 uppercase font-semibold">2. Who's Your Target Buyer?</label>
+                    <input type="text" id="userAudience" value="mga busy corporate workers" oninput="generateDynamicOrganicScript()" class="w-full p-3 bg-[#06040c] border border-white/10 rounded-lg text-white text-xs focus:outline-none focus:border-[#e5b842]">
+                </div>
+                <div>
+                    <label class="text-[11px] text-[#a99ec6] block mb-2 uppercase font-semibold">3. What's Their Problem?</label>
+                    <input type="text" id="userPain" value="laging kulang ang sweldo bago matapos ang buwan" oninput="generateDynamicOrganicScript()" class="w-full p-3 bg-[#06040c] border border-white/10 rounded-lg text-white text-xs focus:outline-none focus:border-[#e5b842]">
+                </div>
+            </div>
+            <div class="mb-6">
+                <label class="text-[11px] text-[#a99ec6] block mb-2 uppercase font-semibold">4. Choose a Script Style/Angle:</label>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                    <button id="btnAngle-nobs" onclick="changeScriptAngle('nobs')" class="p-3 bg-[#e5b842] text-[#0d091c] border-[#e5b842] rounded-lg text-xs font-black transition">👊 Real Talk (No-BS)</button>
+                    <button id="btnAngle-secret" onclick="changeScriptAngle('secret')" class="p-3 bg-white/5 border border-white/10 text-slate-300 rounded-lg text-xs font-black transition">🕵️ Sikreto (Curiosity)</button>
+                    <button id="btnAngle-dreamy" onclick="changeScriptAngle('dreamy')" class="p-3 bg-white/5 border border-white/10 text-slate-300 rounded-lg text-xs font-black transition">✨ Inspiring (Dreamy)</button>
+                    <button id="btnAngle-tutorial" onclick="changeScriptAngle('tutorial')" class="p-3 bg-white/5 border border-white/10 text-slate-300 rounded-lg text-xs font-black transition">📱 Tutorial (Step-by-Step)</button>
+                </div>
+            </div>
+            <div class="space-y-3">
+                <div class="flex justify-between items-center">
+                    <span class="text-xs text-[#e5b842] font-black tracking-wider uppercase">✨ ANG IYONG CUSTOM SCRIPT AT TEMPLATE</span>
+                    <span id="angleBadge" class="text-[10px] bg-[#e5b842]/20 text-[#e5b842] px-2.5 py-1 rounded-md font-bold uppercase">REAL TALK / NO-BS</span>
+                </div>
+                <div class="relative">
+                    <textarea id="dynamicScriptOutput" readonly class="w-full h-[220px] bg-[#06040c] font-mono text-xs sm:text-sm p-4 rounded-xl border border-[#e5b842]/30 focus:outline-none resize-none leading-relaxed text-slate-200"></textarea>
+                </div>
+                <button onclick="copyDynamicScript()" class="w-full py-4 bg-[#e5b842] text-[#0d091c] font-black rounded-xl cursor-pointer text-xs sm:text-sm uppercase tracking-wider hover:opacity-90 transition shadow-lg shadow-[#e5b842]/20">
+                    COPY THIS CUSTOM SCRIPT 📋
+                </button>
+            </div>
+        </div>
+
+        <div class="bg-gradient-to-br from-[#120d24] to-[#0d091c] border border-white/5 rounded-2xl p-2 sm:p-4 glowing-border audio-recorder-section">
+            <iframe src="https://digiteralevi.github.io/hook-coach-engine/" allow="microphone" style="width:100%; height:820px; border:none; border-radius:12px; background:transparent;"></iframe>
+        </div>
+
+    </div>
+
+    <div id="tab-vault" class="digitera-tab-content max-w-[850px] mx-auto space-y-8 container-print-wrapper">
+
+        <div class="border-b border-white/10 pb-4">
+            <span class="inline-block bg-[#e5b842]/10 border border-[#e5b842] text-[#e5b842] px-3 py-1 rounded text-[10px] font-black uppercase">Phase 3</span>
+            <h2 class="text-2xl font-black text-white mt-2 uppercase tracking-wide">Chapter 6: Access Your Assets</h2>
+        </div>
+        <p class="text-sm text-slate-300 leading-relaxed text-justify">
+            Here's the complete list of your master assets from the ₱499 Kit. Click the link cards below to open and save them:
+        </p>
+        <div class="image-container text-center">
+            <img src="https://i.postimg.cc/ZY9M6xmf/Office-overlooking-tropical-beach-202606151116.jpg" alt="[Premium na opisina na nakaharap sa tropikal na beach]" class="w-full max-h-[400px] object-cover rounded-2xl border-2 border-[#e5b842]/40 shadow-xl">
+            <p class="text-xs text-slate-500 italic mt-2">Fig 6: Launching your high-converting digital product storefront overlooking the paradise.</p>
+        </div>
+
+        <div class="space-y-4">
+            <div class="link-card bg-[#0d091c] border-2 border-[#e5b842] rounded-2xl p-6 relative">
+                <span class="text-[10px] bg-purple-900/40 text-purple-300 px-2.5 py-1 rounded font-black uppercase tracking-wider">Step 1: Storefront Platform</span>
+                <h4 class="text-base font-bold text-white uppercase tracking-wide mt-3 mb-1">Edit Canva Storefront Landing Page Template</h4>
+                <p class="text-xs text-slate-400 mb-4">Your pre-made, ready-to-sell sales framework website in Canva.</p>
+                <a href="https://www.canva.com/design/DAHBu9N3ALI/cWHaxxdjKCfZVYSTB0p-FQ/edit?utm_content=DAHBU9N3ALI&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank" rel="noopener noreferrer" class="link-btn block text-center bg-[#e5b842] text-[#0d091c] font-black text-xs py-3 rounded-xl uppercase tracking-wider hover:opacity-90 transition">🎨 Open & Copy Canva Storefront Template</a>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="link-card bg-[#0d091c] border border-white/5 rounded-2xl p-6">
+                    <span class="text-[10px] bg-[#e5b842]/10 text-[#e5b842] px-2.5 py-1 rounded font-black uppercase tracking-wider">Master Vault Asset</span>
+                    <h4 class="text-sm font-bold text-white uppercase tracking-wide mt-3 mb-1">3 Million E-Book Bundles Storage Vault</h4>
+                    <p class="text-xs text-slate-400 mb-4">Serious guides covering finance, digital assets, business, and marketing.</p>
+                    <a href="https://drive.google.com/drive/folders/1rKTq8liwzWgPBMObLi0B8-nUIcW_KYdZ" target="_blank" rel="noopener noreferrer" class="link-btn block text-center bg-white/5 text-[#e5b842] border border-[#e5b842]/30 font-black text-xs py-3 rounded-xl uppercase tracking-wider hover:bg-[#e5b842]/10 transition">🔗 Open Google Drive E-Books</a>
+                </div>
+                
+                <!-- NEW STYLED COMPONENT CARD: 199 SYSTEM MEGA VAULT COMPLETE ACCESS -->
+                <div class="link-card bg-[#0d091c] border-2 border-[#e5b842] rounded-2xl p-6 relative">
+                    <span class="absolute top-3 right-3 bg-[#e5b842]/20 text-[#e5b842] text-[9px] px-2.5 py-0.5 rounded-full font-black uppercase tracking-widest animate-pulse">Mega Access</span>
+                    <span class="text-[10px] bg-[#e5b842]/10 text-[#e5b842] px-2.5 py-1 rounded font-black uppercase tracking-wider">Master Vault Asset</span>
+                    <h4 class="text-sm font-bold text-white uppercase tracking-wide mt-3 mb-1">199 System MEGA VAULT Complete Access</h4>
+                    <p class="text-xs text-slate-400 mb-4">Ultimate access containing 30 Million Digital Products, layouts, templates, and 80k premium cinematic reels.</p>
+                    <a href="https://drive.google.com/drive/folders/1Q0w3dYqqd6JnUfq6Clr6P1GRw5V-44qM?usp=sharing" target="_blank" rel="noopener noreferrer" class="link-btn block text-center bg-[#e5b842] text-[#0d091c] font-black text-xs py-3 rounded-xl uppercase tracking-wider hover:opacity-90 transition">🔗 Open Mega Vault Drive Archive</a>
+                </div>
+
+                <!-- UPDATED KIDS EDUCATIONAL ACTIVITY BUNDLE GOOGLE DRIVE FILE LINK -->
+                <div class="link-card bg-[#0d091c] border border-white/5 rounded-2xl p-6">
+                    <span class="text-[10px] bg-[#e5b842]/10 text-[#e5b842] px-2.5 py-1 rounded font-black uppercase tracking-wider">Master Vault Asset</span>
+                    <h4 class="text-sm font-bold text-white uppercase tracking-wide mt-3 mb-1">3M Kids Educational Content Activity Bundle</h4>
+                    <p class="text-xs text-slate-400 mb-4">Printable activity manuals, worksheets, and colorful graphics ready to resell.</p>
+                    <a href="https://drive.google.com/file/d/1g31mMAyyvZt-6TElrl2YoUOXUmbEgyO9/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="link-btn block text-center bg-white/5 text-[#e5b842] border border-[#e5b842]/30 font-black text-xs py-3 rounded-xl uppercase tracking-wider hover:bg-[#e5b842]/10 transition">🔗 Open Kids Bundle Drive Archive</a>
+                </div>
+                
+                <div class="link-card bg-[#0d091c] border border-white/5 rounded-2xl p-6">
+                    <span class="text-[10px] bg-[#e5b842]/10 text-[#e5b842] px-2.5 py-1 rounded font-black uppercase tracking-wider">Master Vault Asset</span>
+                    <h4 class="text-sm font-bold text-white uppercase tracking-wide mt-3 mb-1">All-In-One Foreign Language Learning Vault</h4>
+                    <p class="text-xs text-slate-400 mb-4">Premium learning modules, templates, and worksheets with PLR rights.</p>
+                    <a href="https://drive.google.com/drive/folders/1WXsQ7_Zcg2n9dh6YXsHJ4rp3XtUFdGQj?usp=drive_link" target="_blank" rel="noopener noreferrer" class="link-btn block text-center bg-white/5 text-[#e5b842] border border-[#e5b842]/30 font-black text-xs py-3 rounded-xl uppercase tracking-wider hover:bg-[#e5b842]/10 transition">🔗 Open Language Materials Storage</a>
+                </div>
+            </div>
+
+            <div class="freebies-box bg-white/5 border border-dashed border-white/10 rounded-2xl p-6">
+                <span class="text-[10px] bg-slate-700 text-slate-200 px-2.5 py-1 rounded font-black uppercase tracking-wider">Freebies & Creator Templates</span>
+                <h4 class="text-sm font-bold text-[#e5b842] uppercase tracking-wide mt-3 mb-3">Canva Marketing Graphics & Done-For-You Materials</h4>
+                <div class="space-y-2.5 flex flex-col font-medium">
+                    <a href="https://www.canva.com/design/DAG4wUK0vuU/P-GkdA4Th9vYraKraKnjxw/edit?utm_content=DAG4wUK0vuU&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank" rel="noopener noreferrer" class="text-xs text-blue-400 hover:underline flex items-center gap-2">📦 Open 100 Premium Product Mockups Template</a>
+                    <a href="https://www.canva.com/design/DAGM30TDTVQ/xTyhBQaHWkp_hbSX2gto_A/view?utm_content=DAGM30TDTVQ&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink&mode=preview" target="_blank" rel="noopener noreferrer" class="text-xs text-blue-400 hover:underline flex items-center gap-2">📑 Open Busy Book Template Link (Part A)</a>
+                    <a href="https://www.canva.com/design/DAGM3pM3QQY/Awd8NZLchY3_qiHOU1gAog/view?utm_content=DAGM3pM3QQY&utm_campaign=designshare&utm_medium=link&utm_source=publishs_harelink&mode=preview" target="_blank" rel="noopener noreferrer" class="text-xs text-blue-400 hover:underline flex items-center gap-2">📑 Open Busy Book Template Link (Part B)</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+        <div class="border-b border-white/10 pb-4 pt-6">
+            <span class="inline-block bg-[#e5b842]/10 border border-[#e5b842] text-[#e5b842] px-3 py-1 rounded text-[10px] font-black uppercase">Phase 4</span>
+            <h2 class="text-2xl font-black text-white mt-2 uppercase tracking-wide">Chapter 7: Scaling with the All-In-One System</h2>
+        </div>
+        <p class="text-sm text-slate-300 leading-relaxed text-justify">
+            Now that your Canva storefront is live, you're about to face a new problem — losing sleep replying to comments. Upgrade to our All-In-One Hybrid System and get the pre-built conversion funnel in Systeme.io, plus the Botcake automated workflow, so a bot handles your DM sales while you sleep.
+        </p>
+        <div class="image-container text-center">
+            <img src="https://i.postimg.cc/TYgN42pp/Smartphone-notification-on-beach-202606151107.jpg" alt="[Automated chat sa mobile habang nasa tabing-dagat]" class="w-full max-h-[400px] object-cover rounded-2xl border-2 border-[#e5b842]/40 shadow-xl">
+            <p class="text-xs text-slate-500 italic mt-2">Fig 7: Letting backend robots scale and convert leads while you enjoy time freedom.</p>
+        </div>
+
+        <!-- NEW TAX-SAVING PAYMONGO COOPERATIVE REFERRAL ADVERTISEMENT CARD (REFERRAL LINK UPDATED) -->
+        <div class="bg-gradient-to-br from-[#120d24] to-[#0d091c] border-2 border-emerald-500/30 rounded-3xl p-6 sm:p-8 shadow-2xl relative overflow-hidden glowing-border mb-6">
+            <div class="absolute -top-12 -left-12 w-32 h-32 bg-emerald-500/10 opacity-30 blur-2xl rounded-full"></div>
+            <div class="flex items-start gap-4">
+                <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center font-bold text-xl shrink-0">🛡️</div>
+                <div class="space-y-3 flex-1">
+                    <span class="text-[9px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2.5 py-1 rounded font-black uppercase tracking-widest inline-block">Revenue Protection Protocol</span>
+                    <h3 class="text-base sm:text-lg font-black text-white uppercase tracking-wide">Stop losing a huge chunk of your storefront income!</h3>
+                    <p class="text-xs text-slate-300 leading-relaxed text-justify">
+                        Why do most new digital creators fail? Because they rely on automatic platforms (like Raket.ph) with <strong>massive platform fees and VAT deductions — reaching 10-15%+ per transaction!</strong> 
+                    </p>
+                    <p class="text-xs text-slate-300 leading-relaxed text-justify">
+                        To get your income in full, straight to your GCash, Maya, or bank account, we built a dynamic system integration. With the <strong>Direct PayMongo Payments Gateway</strong>, your transaction fee drops to just <strong>2% to 3.5%</strong> — meaning 97%+ of every sale lands safely in your pocket.
+                    </p>
+                    
+                    <div class="pt-2">
+                        <a href="https://dashboard.paymongo.com/signup?code=3NBMMJSQ" target="_blank" rel="noopener noreferrer" class="inline-block bg-emerald-500 hover:bg-emerald-400 text-[#0d091c] font-black text-xs sm:text-sm py-4 px-6 rounded-2xl uppercase tracking-wider transition duration-250 shadow-xl shadow-emerald-500/15 w-full text-center">
+                            💳 REGISTER YOUR FREE PAYMONGO MERCHANT ACCOUNT DIRECTLY HERE
+                        </a>
+                        <span class="block text-[10px] text-slate-500 text-center mt-2 italic">Standard Free Sign-Up • Instant activation support included in your Digitera ecosystem dashboard.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="yellow-upgrade-box bg-gradient-to-br from-[#1b1509] via-[#0d091c] to-[#06040c] border-2 border-[#e5b842] rounded-3xl p-6 sm:p-8 shadow-2xl relative overflow-hidden no-print">
+            <div class="text-center mb-4">
+                <span class="text-xs font-black text-[#e5b842] uppercase tracking-widest block mb-1">🔥 WANT TO MAKE YOUR INCOME COMPLETELY HANDS-FREE?</span>
+            </div>
+            
+            <div class="bg-[#3e1b08]/30 border border-[#e5b842]/30 rounded-xl p-3 inline-block mb-4 text-center w-full">
+                <span class="text-[11px] font-black text-[#e5b842] uppercase tracking-wider">🔒 UNLOCKED UPGRADE: THE ALL-IN-ONE HYBRID SYSTEM</span>
+            </div>
+            
+            <p class="text-xs text-slate-300 leading-relaxed text-center mb-6 max-w-[650px] mx-auto">
+                Upgrade now to my <strong>Hybrid Product Secret System</strong> to get the pre-built conversion sales psychology funnels, full integration of the <strong>Botcake Chat-to-Cash Machine</strong>, and the <strong>KidzCreator PLR System</strong> for continuous automated growth!
+            </p>
+            
+            <div class="text-center">
+                <a href="https://www.raket.ph/digiteralevi/products/automated-hybrid-system-digital-product?src=share" target="_blank" rel="noopener noreferrer" class="inline-block w-full bg-[#e5b842] text-[#0d091c] font-black text-xs sm:text-sm py-4 px-6 rounded-2xl uppercase tracking-wider hover:opacity-90 transition duration-200 shadow-xl shadow-[#e5b842]/20 text-center">
+                    ⚡ CLICK HERE TO UPGRADE TO HYBRID SECRET SYSTEM NOW
+                </a>
+            </div>
+        </div>
+
+        <div class="scaling-box bg-gradient-to-br from-[#120d24] to-[#0d091c] border-2 border-[#f59e0b] rounded-2xl p-6 space-y-6">
+            <div>
+                <span class="text-[10px] bg-[#6d28d9] text-white px-2.5 py-1 rounded font-black uppercase tracking-wider">Premium System Portals</span>
+                <h4 class="text-sm font-bold text-white uppercase tracking-wide mt-3 mb-2">Your High-Ticket Advanced Engines & Systems:</h4>
+                <p class="text-xs text-slate-400">
+                    Click the portal title or the launch button below to open the exact system sales page you've unlocked:
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="bg-black/40 p-5 rounded-xl border border-white/5 flex flex-col justify-between relative">
+                    <div>
+                        <span class="text-[9px] text-[#e5b842] font-black uppercase tracking-widest block mb-1">🔥 PLR ACTIVE PORTAL</span>
+                        
+                        <div class="mb-3">
+                            <a href="https://learnandearnsystem.systeme.io/kidzcreator" target="_blank" rel="noopener noreferrer" class="inline-block group cursor-pointer">
+                                <h5 class="text-xs font-black text-white uppercase group-hover:text-[#e5b842] transition-all duration-200 flex items-center gap-1.5 leading-snug">
+                                    <span class="underline decoration-2 decoration-[#e5b842] group-hover:decoration-white font-bold text-sm">KidzCreator PLR System Portal</span>
+                                    <svg class="w-3.5 h-3.5 text-[#e5b842]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                                </h5>
+                            </a>
+                        </div>
+
+                        <p class="text-[11px] text-slate-400 mb-4 leading-relaxed">
+                            Access high-converting kids learning assets and <strong>Editable Videos</strong> you can use on your YouTube channel or monetize across your social media accounts.
+                        </p>
+                    </div>
+                    <a href="https://learnandearnsystem.systeme.io/kidzcreator" target="_blank" rel="noopener noreferrer" class="w-full text-center bg-[#e5b842] text-[#0d091c] font-black text-[11px] py-3 rounded-lg uppercase tracking-wider hover:opacity-90 transition shadow-lg shadow-[#e5b842]/10 block">
+                        🚀 Launch KidzCreator Portal
+                    </a>
+                </div>
+
+                <div class="bg-black/40 p-5 rounded-xl border border-white/5 flex flex-col justify-between relative">
+                    <div>
+                        <span class="text-[9px] text-[#7c3aed] font-black uppercase tracking-widest block mb-1">🤖 AUTOMATION WORKFLOWS</span>
+                        
+                        <div class="mb-3">
+                            <a href="https://digiteralevi.systeme.io/doneforyou-6f82e569-232b7b6e-b8b13fbc-1536c416" target="_blank" rel="noopener noreferrer" class="inline-block group cursor-pointer">
+                                <h5 class="text-xs font-black text-white uppercase group-hover:text-[#7c3aed] transition-all duration-200 flex items-center gap-1.5 leading-snug">
+                                    <span class="underline decoration-2 decoration-purple-500 group-hover:decoration-white font-bold text-sm">1 Hybrid Chat-To-Cash Automation</span>
+                                    <svg class="w-3.5 h-3.5 text-[#7c3aed]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                                </h5>
+                            </a>
+                        </div>
+
+                        <p class="text-[11px] text-slate-400 mb-4 leading-relaxed">
+                            Copy the ready-made conversion workflows, international Facebook Group Lists for foreign reach, and learn the high-income skills you can offer as a service.
+                        </p>
+                    </div>
+                    <a href="https://digiteralevi.systeme.io/doneforyou-6f82e569-232b7b6e-b8b13fbc-1536c416" target="_blank" rel="noopener noreferrer" class="w-full text-center bg-[#7c3aed] text-white font-black text-[11px] py-3 rounded-lg uppercase tracking-wider hover:bg-[#7c3aed]/90 transition shadow-lg shadow-purple-600/10 block">
+                        ⚙️ Open 1 Hybrid System
+                    </a>
+                </div>
+            </div>
+
+            <!-- EXPANDED 3-COLUMN EXTERNAL UTILITIES SETUP FOR USER REFERRALS -->
+            <div class="border-t border-white/5 pt-4">
+                <span class="text-[10px] text-slate-400 font-bold block mb-2">ADDITIONAL OPTIONS (EXTERNAL AUTOMATION SETUP):</span>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    <a href="https://systeme.io/?sa=sa0254626512216f14e7e0660af6274a000cd036c1" target="_blank" rel="noopener noreferrer" class="text-center bg-[#1d1b2e] border border-white/10 hover:bg-white/5 text-slate-300 font-bold text-xs py-3 rounded-xl uppercase tracking-wider transition flex items-center justify-center">🎁 CREATE FREE SYSTEME.IO</a>
+                    <a href="https://botcake.io" target="_blank" rel="noopener noreferrer" class="text-center bg-black hover:bg-black/80 text-[#fbbf24] border border-white/10 font-bold text-xs py-3 rounded-xl uppercase tracking-wider transition flex items-center justify-center">🤖 CONNECT BOTCAKE CHAT ENGINE</a>
+                    <a href="https://dashboard.paymongo.com/signup?code=3NBMMJSQ" target="_blank" rel="noopener noreferrer" class="text-center bg-emerald-950/40 hover:bg-emerald-950/60 text-emerald-400 border border-emerald-500/20 font-bold text-xs py-3 rounded-xl uppercase tracking-wider transition flex items-center justify-center gap-1.5">💳 ACTIVATE PAYMONGO ACCOUNT</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="vip-upgrade-card bg-gradient-to-br from-[#200a18] to-[#0a0512] border-2 border-dashed border-[#ff477e] rounded-2xl p-6 text-center no-print mt-6">
+            <div class="text-2xl mb-2">🔒</div>
+            <h4 class="text-sm font-bold text-[#ff477e] uppercase tracking-wide">VIP PREMIUM AUTOMATION DECK IS CURRENTLY LOCKED</h4>
+            <p class="text-[11px] text-slate-400 mb-4 max-w-[550px] mx-auto">
+                Your access to the core backend is restricted. To use the <strong>15-Color Website Generator</strong>, monetize the <strong>KidzCreator Editable Videos</strong> on YouTube, and unlock the <strong>International FB Group Lists</strong>, upgrade right now!
+            </p>
+            <a href="https://www.raket.ph/digiteralevi/products/automated-hybrid-system-digital-product?src=share" target="_blank" rel="noopener noreferrer" class="inline-block bg-[#ff477e] text-white font-black text-xs px-6 py-3 rounded-xl uppercase tracking-wider hover:opacity-90 transition duration-200">
+                ⚡ UNLOCK FULL AUTOMATED VIP PLATFORM SYSTEMS NOW
+            </a>
+        </div>
+
+    </div>
+
+    <div class="max-w-[850px] mx-auto mt-12 mb-6 text-center no-print border-t border-white/10 pt-6">
+        <p class="text-[10px] text-slate-500 tracking-widest uppercase">© 2026 DIGITERA LEVI. ALL RIGHTS RESERVED. PHILIPPINES</p>
+    </div>
+
+    <div id="digitera-global-toast" class="fixed bottom-6 right-6 bg-[#e5b842] text-[#0d091c] px-5 py-3.5 rounded-xl font-bold text-xs opacity-0 pointer-events-none transition-all duration-300 z-[999999] shadow-2xl">
+        Copied to clipboard!
+    </div>
+
+    <script>
+        // Programmatic lightweight object database holding all 12 niches data securely
+        const roadmapNicheDatabase = {
+            social: {
+                emoji: "📱", title: "Social Media Strategy",
+                tasks: [
+                    "<strong>Step 1:</strong> Mag-brainstorm ng 30 High-Converting Hook Topics para sa mga business owners.",
+                    "<strong>Step 2:</strong> Buksan ang Canva at gumawa ng isang A4 workbook Template na may premium soft lilac, beige, and gold styles.",
+                    "<strong>Step 3:</strong> I-click at i-copy ang deep detailed AI Prompt sa tabi para i-feed sa coding engine mo.",
+                    "<strong>Step 4:</strong> I-paste ang code sa Claude or ChatGPT at kunin ang standalone index.html file build.",
+                    "<strong>Step 5:</strong> Pag-isahin ang Canva PDF workbook guide at ang live interactive HTML script app sa loob ng isang Google Drive folder.",
+                    "<strong>Step 6:</strong> Buksan ang Systeme.io og gumawa ng bagong landing page gamit ang sales sequence structures mo.",
+                    "<strong>Step 7:</strong> Mag-setup ng One-Time Link item package asset value (₱499 - ₱997) sa iyong PayMongo dashboard accounts.",
+                    "<strong>Step 8:</strong> I-link ang PayMongo URL sa Systeme.io page buttons at i-secure ang automation flow rules para sa instantaneous email product delivery."
+                ],
+                prompt: "Act as an elite Full-Stack Engineer and UI/UX Digital Architect. Build a highly advanced, fully interactive, and comprehensive HTML Content Calendar and Strategy Planner application within a single self-contained index.html file. The interface must dynamically render an organized layout grid mapping out Day 1 through Day 30. Each calendar day module must be interactive and fully clickable. Upon clicking a day card, it must open up an integrated custom text input field workspace with layout boxes for 'Viral Hook Headline', 'Core Caption Body Script', and 'Target Keywords'. Program a robust native JavaScript LocalStorage automation engine that instantly serializes and auto-saves every individual text string entry field on-the-fly, ensuring complete client data persistence upon browser refresh sessions. Design the entire module using a premium high-end dark luxury studio color scheme, utilizing rich slate backgrounds (#0f172a), crisp structured borders, and bright neon violet indicator glows. MANDATORY RULE: Output only the continuous, functional, and complete code block. Do not truncate functions, do not write placeholder comment blocks, and do not use foreign library dependencies. Give me the full complete script file."
+            },
+            money: {
+                emoji: "💰", title: "Personal Finance Suite",
+                tasks: [
+                    "<strong>Step 1:</strong> Latagin ang estruktura ng 50/30/20 standard wealth budget distribution variables.",
+                    "<strong>Step 2:</strong> Gumawa ng layout dashboard architecture sa Canva para sa visual tracking components.",
+                    "<strong>Step 3:</strong> I-paste ang AI Prompt sa tabi para makuha ang malinis na coding ng Javascript Expense Tracker math.",
+                    "<strong>Step 4:</strong> I-test ang tracking computation dashboard kung tumutugma sa input calculations ang total variables.",
+                    "<strong>Step 5:</strong> I-upload ang master template package bundle files sa isang permanenteng Google Drive folder link.",
+                    "<strong>Step 6:</strong> I-setup ang Systeme.io digital product sequence framework kasama ang premium theme landing page.",
+                    "<strong>Step 7:</strong> Mag-generate ng PayMongo payment link at isalpak ang redirect thank you parameters sa sales portal system.",
+                    "<strong>Step 8:</strong> Patakbuhin ang complete operational integration testing gamit ang live checkout sequences loop."
+                ],
+                prompt: "Act as a Senior Principal Financial Software Architect. Code an elite, independent, and secure HTML Interactive Budget Tracker and Ledger Application Engine inside one singular standalone file layout. The application must feature structured operational forms requiring inputs for Total Monthly Revenue, Fixed Necessary Overhead (50%), Flexible Lifestyle Desires (30%), and Financial Investments (20%). Program advanced JavaScript mathematical calculations that trigger live totals computations down to the exact peso as numbers are typed. Integrate customizable CSS progress visualizer loading bars that update dynamically—flashing emerald green for healthy margins, warm orange for approaching caps, and safety red when budget boundaries are breached. Wrap the complete build in an active cyber neon theme style featuring dark obsidian background parameters and micro-glow data display lines. STRICT INSTRUCTION: Do not write summary chat texts or markdown summaries. Output the absolute full, untruncated, active HTML document with all styles and operational scripts intact inside one response block."
+            },
+            design: {
+                emoji: "🎨", title: "Design Assets Studio",
+                tasks: [
+                    "<strong>Step 1:</strong> Mag-curate ng 12 to 20 signature aesthetic hex code color palettes na trending sa market ngayon.",
+                    "<strong>Step 2:</strong> Gumawa ng premium font combination cheat sheet guide gamit ang Canva editor interface.",
+                    "<strong>Step 3:</strong> Patakbuhin ang nakopyang AI Prompt sa AI builder para mag-code ng Instant Palette Preview engine.",
+                    "<strong>Step 4:</strong> I-embed ang palette engine file sa iyong Google Drive bansa billing core component ng bundle access mo.",
+                    "<strong>Step 5:</strong> Latagin ang sales copy at conversion hooks sa iyong Systeme.io funnel landing block.",
+                    "<strong>Step 6:</strong> Gumawa ng active link sa PayMongo and siguruhing tumutugma ang pricing value sa packages mo.",
+                    "<strong>Step 7:</strong> I-secure ang instantaneous delivery framework via automated workflow email sa Systeme.io center.",
+                    "<strong>Step 8:</strong> Patakbuhin ang full deployment loops checks gamit ang live preview page modes ng site data."
+                ],
+                prompt: "Act as a Lead UI/UX Interface and Interaction Engineer. Write a comprehensive, production-ready single-file HTML Brand Palette Customizer and Typography Sandbox Software App. Create a dedicated section displaying a grid of clickable luxury branding color pills (such as soft lilac violet, gold champagne, minimalist beige, dark slate charcoal). Program dynamic JavaScript event listeners so that when a user clicks any palette selection, it instantly overrides and transforms the inline color variables, text fonts, and styling elements of a mock wireframe landing page template container right on the dashboard layout. Add a live text testing box linked to popular web typography combinations. Output the absolute complete HTML file, with full CSS scripts inside the build. No placeholders, no skipped code strings, fully operational production script files."
+            },
+            fitness: {
+                emoji: "💪", title: "Health & Fitness Planner",
+                tasks: [
+                    "<strong>Step 1:</strong> I-compile ang exact formula equations para sa macro splits base sa weight and training parameters.",
+                    "<strong>Step 2:</strong> Mag-disenyo ng 7-Day Meal Log worksheet visual planner framework sa iyong Canva dashboard.",
+                    "<strong>Step 3:</strong> I-load ang AI Prompt sa AI engine para makuha ang raw HTML block ng Interactive Calorie Counter tool.",
+                    "<strong>Step 4:</strong> Pag-isahin ang digital workbook at calorie calculator tool sa loob ng secure GDrive folder database.",
+                    "<strong>Step 5:</strong> I-drag and drop ang elements para mabuo ang fitness asset storefront section sa Systeme.io page.",
+                    "<strong>Step 6:</strong> Mag-set up ng Payment Link sa PayMongo at i-paste ito sa call-to-action access buttons ng funnel page mo.",
+                    "<strong>Step 7:</strong> Patakbuhin ang automatic product transmission sequences para sa bawat verified buyer automation triggers.",
+                    "<strong>Step 8:</strong> Magsagawa ng checkout tracking system evaluation gamit ang active test payment scenarios layer."
+                ],
+                prompt: "Act as a Senior Medical Informatics and Health Systems Developer. Write a full-length, self-contained HTML Calorie & Macronutrient Splitter Engine app. Design an input control layout form that collects client weight, lean target goals (fat loss, clean bulk, athletic maintenance), and custom daily baseline activity score factors. Code JavaScript computation libraries that mathematically translate these parameters into targeted daily caloric needs and precise splits for Protein, Carbohydrates, and Fats in total grams. Display results using clear, responsive percentage breakdown cards and progress data loaders. Use a modern, dark premium athletic gym style interface. CRITICAL: Output only the absolute un-abbreviated code inside one clean block. Do not truncate lists, do not write truncated logic statements, full execution script block."
+            },
+            business: {
+                emoji: "🚀", title: "E-Commerce Toolkits",
+                tasks: [
+                    "<strong>Step 1:</strong> Outline core store margin and operational expense trackers variables.",
+                    "<strong>Step 2:</strong> Build inventory matrix tables with automated low-stock warnings structures.",
+                    "<strong>Step 3:</strong> Set up target pricing calculation blocks for easy analysis frameworks.",
+                    "<strong>Step 4:</strong> I-verify ang functional scripts ng tool kung awtomatikong binabawas ang standard processing fees.",
+                    "<strong>Step 5:</strong> I-bundle ang calculator framework at visual guide sa iyong piniling Google Drive platform.",
+                    "<strong>Step 6:</strong> I-publish ang high-converting e-com toolkit sales block page sa Systeme.io software template.",
+                    "<strong>Step 7:</strong> Kopyahin ang unique active PayMongo checkout path URL at isalpak sa transaction links ng site.",
+                    "<strong>Step 8:</strong> Paganahin ang automated background transmission rules para sa bawat papasok na commercial client data."
+                ],
+                prompt: "Act as a Senior Commercial Platform Developer. Build a comprehensive HTML Merchant Margin & Scaling Framework Application within a single independent file block structure. Create distinct interactive data entry cells for Base Wholesale Acquisition Cost, Domestic Shipping Logistics Fees, Target Cost-Per-Purchase (CPP) Facebook Ads metrics, and local platform gateway operational deductions (3% standard execution calculation variables). Program JavaScript scripts to dynamically crunch numbers and output Gross Revenue targets, true Net Operational Margin, break-even purchase rules, and automated recommended pricing tiers. Format using advanced dashboard data grids. Output the complete raw index.html block."
+            },
+            education: {
+                emoji: "📚", title: "Kids / Education Guides",
+                tasks: [
+                    "<strong>Step 1:</strong> Mag-research ng specific age-group parameters para sa kids developmental training worksheet topics.",
+                    "<strong>Step 2:</strong> Bumuhat ng 50 premium pages ng coloring at activity sheets sa loob ng iyong Canva framework.",
+                    "<strong>Step 3:</strong> Gamitin ang AI Prompt sa tabi para makalikha ng Interactive Interactive Star Reward Task points tracker app.",
+                    "<strong>Step 4:</strong> I-bundle ang Canva PDF sheet download file at HTML points app sa isang protected GDrive location path.",
+                    "<strong>Step 5:</strong> I-setup ang visual presentation layer at badges ng kids guide kit sa iyong Systeme.io editor.",
+                    "<strong>Step 6:</strong> Mag-issue ng bagong 1-time purchase transaction item link sa iyong PayMongo dashboard dashboard array.",
+                    "<strong>Step 7:</strong> I-lock ang redirection path links ng systems block patungo sa secure automated delivery sequences.",
+                    "<strong>Step 8:</strong> Subukan ang automation workflows parameters gamit ang verified test check accounts profiles."
+                ],
+                prompt: "Act as an Educational Software Architect. Design a self-contained HTML Kids Task Reward Board app. The application must feature an interactive dashboard where parents can type daily custom chores or learning targets. Include clickable gold star counters that increment scores instantly upon selection. Program custom JavaScript triggers that fire celebration canvas confetti animations on screen whenever a student achieves a customized milestone score. Use a vibrant, modern, clean UI theme that looks outstanding on both tablets and mobile. Output the single complete index.html file with zero missing functions."
+            },
+            realestate: {
+                emoji: "🏠", title: "Real Estate Portals",
+                tasks: [
+                    "<strong>Step 1:</strong> Alamin ang loan parameters at standard bank interest amortization formulas sa PH market.",
+                    "<strong>Step 2:</strong> Mag-design ng real estate listing profile checklist document bundle layout sa Canva application.",
+                    "<strong>Step 3:</strong> I-run ang prompt code generator sa AI tools para makuha ang Interactive Amortization Calculator engine.",
+                    "<strong>Step 4:</strong> I-pack ang files sa isang Google Drive asset folder at i-set ang parameters nito to 'Anyone with the link'.",
+                    "<strong>Step 5:</strong> I-paste ang master marketing layouts ng toolkit sa iyong live sub-domain framework sa Systeme.io.",
+                    "<strong>Step 6:</strong> I-activate ang bagong payment link gateway sa PayMongo and isalpak ang link nito sa main actions layer.",
+                    "<strong>Step 7:</strong> Latagin ang exact workflow validation lines para sa email access triggers ng systems module.",
+                    "<strong>Step 8:</strong> Magsagawa ng full systems link diagnostic monitoring sa live storefront link arrays."
+                ],
+                prompt: "Act as a Senior Financial Modeling Software Developer. Write a production-ready HTML Mortgage Amortization & Investment Comparison engine. The tool needs full-featured input data rows for Property Purchase Price, Downpayment Values, Loan Interest Rates, and Duration Terms. Write precise looping JavaScript functions that output a comprehensive amortization grid breaking down every month's principal, interest reduction, and remaining equity balance. Include an adjacent module to track projected gross rental yields. Apply a high-end corporate slate appearance theme. Do not write placeholder functions, provide the full operational code block inside a single file response build."
+            },
+            cooking: {
+                emoji: "🍳", title: "Food & Recipe Scalers",
+                tasks: [
+                    "<strong>Step 1:</strong> Mag-ipon ng 15 to 30 targeted custom recipe models na swak sa specific dietary lifestyle bundles.",
+                    "<strong>Step 2:</strong> I-format ang visual design blocks ng recipe template document sheets sa iyong Canva dashboard.",
+                    "<strong>Step 3:</strong> I-generate ang functional HTML math code para sa isang Recipe Portion Scale Multiplier component app.",
+                    "<strong>Step 4:</strong> Isalin ang core visual manuals at scaling tools sa protected files structure ng Google Drive cloud.",
+                    "<strong>Step 5:</strong> I-drag and position ang system design blocks ng iyong recipe storefront module sa Systeme.io page.",
+                    "<strong>Step 6:</strong> I-bind ang active link ng PayMongo checkout sheet sa checkout structures ng iyong layout grid.",
+                    "<strong>Step 7:</strong> I-setup ang complete transactional confirmation email lines para sa smooth package deployment loops.",
+                    "<strong>Step 8:</strong> I-verify ang operational flow ng media link parameters sa actual customer browser tabs."
+                ],
+                prompt: "Act as a Senior Web Utility Engineer. Build a robust HTML Cooking Portion Scaler and Ingredient Unit Converter tool inside a single file code box. Create text input matrices where users can log standard recipe materials and base weight volumes. Program JavaScript multiplier modules linked to action pill items (e.g., Double x2, Triple x3, Halve /2) that instantly scale all quantities across the page. Add an integrated column for volume-to-weight translation calculations (e.g., cups to grams). Style with a beautiful culinary dark mode layout. Deliver the full, comprehensive HTML codebase with no lines missing."
+            },
+            productivity: {
+                emoji: "⚡", title: "Productivity Engines",
+                tasks: [
+                    "<strong>Step 1:</strong> Latagin ang mechanical structures ng deep work session timers at productivity tracking frameworks.",
+                    "<strong>Step 2:</strong> Gumawa ng dynamic goal setting worksheet asset outline block gamit ang Canva editor interface.",
+                    "<strong>Step 3:</strong> Patakbuhin ang AI prompt para makabuo ng standalone HTML Pomodoro Focus Countdown Tracker mini app.",
+                    "<strong>Step 4:</strong> I-embed ang file system packages ng package bundle sa iyong main folder destination sa Google Drive.",
+                    "<strong>Step 5:</strong> Buksan ang sub-page platform sa Systeme.io og i-embed ang promotional copy blocks ng kit.",
+                    "<strong>Step 6:</strong> Mag-issue ng live code link sa PayMongo panel at isalpak ang tracking variables sa main links layer.",
+                    "<strong>Step 7:</strong> I-save ang operational rules parameters para sa seamless instant product dispatch loops ng client access.",
+                    "<strong>Step 8:</strong> Magsagawa ng systematic workflow routing review sa actual customer communication lines."
+                ],
+                prompt: "Act as an advanced Productivity Tool Architect. Create a custom HTML Pomodoro Timer & Kanban Task Dashboard application within a single file construct. Include adjustable countdown timer session engines (25 min focus, 5 min short breaks) programmed with full system alerts and sound outputs. Build a clean responsive column interface tracking 'To Do', 'In Progress', and 'Completed' tasks modules. Apply premium minimal charcoal slate styling frameworks. Export only the raw untruncated HTML output container block."
+            },
+            crypto: {
+                emoji: "🌐", title: "Web3 & Crypto Calculators",
+                tasks: [
+                    "<strong>Step 1:</strong> Formulate dollar-cost-averaging investment risk equations capital growth loops.",
+                    "<strong>Step 2:</strong> Build active buy targets simulation spreadsheets parameters models.",
+                    "<strong>Step 3:</strong> Layout strict portfolio allocation safety matrix grids variables layers.",
+                    "<strong>Step 4:</strong> Isama ang core analytics calculator file na 'yan sa secure structural location ng Google Drive repository.",
+                    "<strong>Step 5:</strong> I-publish ang modern high-converting crypto workspace modules page sa iyong Systeme.io interface account.",
+                    "<strong>Step 6:</strong> I-setup ang real-time PayMongo transaction button structure kasama ang exact product pricing model codes.",
+                    "<strong>Step 7:</strong> Siguruhing active ang direct workflow transmission emails para sa seamless deployment sequences loop.",
+                    "<strong>Step 8:</strong> Magsagawa ng direct end-to-end payment confirmation routing verification checks."
+                ],
+                prompt: "Act as a Senior Web3 Systems Developer. Code an advanced HTML Crypto Dollar-Cost-Average (DCA) Investment Modeling application inside a standalone file layout. The software must process variable input controls for Investment Allocation Amount, Purchase Cadence (Daily, Weekly, Interval), and historical Entry Prices. Code robust calculation loops that calculate average entry price values, net capital invested, token accumulation charts, and true profit ROI dashboards dynamically. Apply an elite high-end fintech dark aesthetic layout with neon accents. Output the entire code block completely without skipping loops."
+            },
+            beauty: {
+                emoji: "💅", title: "Beauty & Care Logs",
+                tasks: [
+                    "<strong>Step 1:</strong> Mag-curate ng raw parameters para sa step-by-step skin routine sequence analysis and milestone calendars.",
+                    "<strong>Step 2:</strong> Gumawa ng elegant AM/PM logging diary visual workbook page templates gamit ang Canva engine workspace.",
+                    "<strong>Step 3:</strong> Patakbuhin ang interactive prompt sa AI systems para makuha ang HTML Skincare Shelf Life Expiration Tracker app.",
+                    "<strong>Step 4:</strong> I-store ang active application at template tracking guides sa cloud framework link ng Google Drive database.",
+                    "<strong>Step 5:</strong> Latagin ang sales arguments at client conversion blocks sa target systems landing section sa Systeme.io.",
+                    "<strong>Step 6:</strong> Mag-setup ng linked PayMongo standard link button matrix at ikonekta sa active elements tracking module.",
+                    "<strong>Step 7:</strong> I-verify ang complete automatic verification loops ng systemic instant delivery engines ng funnel setup.",
+                    "<strong>Step 8:</strong> Magsagawa ng full layout evaluation sa mobile display scaling parameters ng site."
+                ],
+                prompt: "Act as a Lead Lifestyle Software Engineer. Create a standalone, full-length HTML Product Expiration and Daily Routine Tracker tool inside one block. Create structured input grids for Product Item Name, Initial Opening Date, and Product Lifespan Months. Program native JavaScript calculations that output safe active status badges dynamically ('Safe to use' in green, 'Expiring Soon' in yellow, or 'EXPIRED' in red). Include a daily AM/PM checklist logger system. Wrap the tool inside an elegant luxury dark layout container profile. Provide only the comprehensive, un-truncated full HTML file block code."
+            },
+            career: {
+                emoji: "👔", title: "Career & Resume Builders",
+                tasks: [
+                    "<strong>Step 1:</strong> Mag-compile ng high-utility text scripts, resume structures, at executive level bio profile formulas.",
+                    "<strong>Step 2:</strong> Mag-design ng 5 style variations ng templates at minimalist resume canvas frames sa Canva app.",
+                    "<strong>Step 3:</strong> I-generate ang raw code script ng isang Interactive Interactive Resume Content Builder app module gamit ang HTML layout.",
+                    "<strong>Step 4:</strong> I-compress ang operational files bundle sa isang madaling ma-access na Google Drive location directory path.",
+                    "<strong>Step 5:</strong> I-drag and configure ang corporate style elements para mabuo ang storefront view portal sa Systeme.io page.",
+                    "<strong>Step 6:</strong> Isalpak ang generated live transaction PayMongo URL structures sa active action slots ng custom grid.",
+                    "<strong>Step 7:</strong> Selyuhan ang platform settings para sa instantaneous transmission parameters ng bawat success buy events.",
+                    "<strong>Step 8:</strong> Subukan ang actual client onboarding communication lines via automated systems tracking updates."
+                ],
+                prompt: "Act as a Senior Executive Career Services Developer. Build a custom HTML Dynamic Resume Content Builder and Mapping tool within one single code file response. Include entry sections for job profiles, achievement hooks, and professional skills with an instant copy-paste markdown button. Output the complete raw single HTML file block inside the response codebox completely filled without placeholders."
+            }
+        };
+
+        // Populate the 12-niche button framework programmatically
+        function initializeNicheBuilderGrid() {
+            const gridContainer = document.getElementById('niche-button-grid');
+            gridContainer.innerHTML = ''; // reset container
+            
+            Object.keys(roadmapNicheDatabase).forEach((key) => {
+                const item = roadmapNicheDatabase[key];
+                const btn = document.createElement('div');
+                btn.id = `niche-target-pill-${key}`;
+                btn.className = "niche-pill-btn rounded-xl p-3.5 cursor-pointer text-center flex flex-col items-center justify-center";
+                btn.setAttribute('onclick', `activateNicheRoadmap('${key}')`);
+                btn.innerHTML = `
+                    <div class="text-xl">${item.emoji}</div>
+                    <div class="font-extrabold text-[11px] text-white mt-1.5 leading-tight">${item.title}</div>
+                `;
+                gridContainer.appendChild(btn);
+            });
+            
+            // Set initial state default to social media niche
+            activateNicheRoadmap('social');
+        }
+
+        function activateNicheRoadmap(nicheKey) {
+            // Manage UI Active classes state logic loop
+            document.querySelectorAll('#digitera-root .niche-pill-btn').forEach(btn => btn.classList.remove('active'));
+            const selectedPill = document.getElementById(`niche-target-pill-${nicheKey}`);
+            if(selectedPill) selectedPill.classList.add('active');
+
+            const targetData = roadmapNicheDatabase[nicheKey];
+            if(!targetData) return;
+
+            // Load Title and Tasks Checklist Array Data
+            document.getElementById('roadmap-title-heading').innerText = `${targetData.emoji} ${targetData.title} Production Roadmap:`;
+            const tasksList = document.getElementById('roadmap-tasks-list');
+            tasksList.innerHTML = '';
+            
+            targetData.tasks.forEach((taskString) => {
+                const li = document.createElement('li');
+                li.className = "bg-black/20 border border-white/5 p-3 rounded-xl flex items-start gap-2.5 hover:border-white/10 transition";
+                li.innerHTML = `
+                    <span class="text-[#e5b842] font-black text-sm shrink-0 mt-0.5">✓</span>
+                    <span>${taskString}</span>
+                `;
+                tasksList.appendChild(li);
+            });
+
+            // Load AI text deep prompt context parameters
+            document.getElementById('niche-prompt-textarea').value = targetData.prompt;
+        }
+
+        function copyNichePromptAction() {
+            const copyText = document.getElementById('niche-prompt-textarea');
+            copyText.select();
+            copyText.setSelectionRange(0, 99999);
+            document.execCommand("copy");
+            triggerToast("Copied Niche Coding Prompt to Clipboard! 🤖🔥");
+        }
+
+        // Existing Tab Switching Logic
+        function switchOrganicTab(evt, tabId) {
+            document.querySelectorAll('#digitera-root .digitera-tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('#digitera-root .digitera-tab-btn').forEach(el => el.classList.remove('active'));
+            document.querySelector('#digitera-root #' + tabId).classList.add('active');
+            if (evt && evt.currentTarget) { evt.currentTarget.classList.add('active'); }
+        }
+
+        // Toast Trigger
+        function triggerToast(msg) {
+            const toast = document.querySelector('#digitera-root #digitera-global-toast');
+            toast.innerText = msg; toast.style.opacity = '1';
+            setTimeout(() => { toast.style.opacity = '0'; }, 3000);
+        }
+
+        // Chapter 5 Dynamics: Live Caption Prompt Generator
+        function updateChapter5Prompt() {
+            const pName = document.querySelector('#digitera-root #ch5UserProduct').value || "Kids Learning Materials Bundle";
+            const pPrice = document.querySelector('#digitera-root #ch5UserPrice').value || "299";
+            
+            const dynamicText = `Act as a brutally honest sales copywriter. I am selling a ₱${pPrice} ${pName}. Write 3 highly engaging captions in Taglish. Start with a mapanakit hook exposing laziness using an Open Loop.`;
+            
+            document.querySelector('#digitera-root #ch5PromptOutput').innerText = dynamicText;
+        }
+
+        function copyCh5Prompt() {
+            const promptText = document.querySelector('#digitera-root #ch5PromptOutput').innerText;
+            if(!promptText) return;
+            const dummy = document.createElement("textarea"); document.body.appendChild(dummy);
+            dummy.value = promptText; dummy.select(); document.execCommand("copy"); document.body.removeChild(dummy);
+            triggerToast("Copied ChatGPT Prompt to Clipboard! 🤖🔥");
+        }
+
+        // Engine 1 Simulators
+        function calcOrganicSim() {
+            var price = parseFloat(document.querySelector('#digitera-root #orgPrice').value) || 0;
+            var vol = parseFloat(document.querySelector('#digitera-root #orgVol').value) || 0;
+            document.querySelector('#digitera-root #orgOutGross').innerText = "₱" + (price * vol).toLocaleString();
+        }
+
+        // Engine 3: Customizable ROI Valuation Vault Simulator
+        function runVaultCalculator() {
+            const prodName = document.querySelector('#digitera-root #vaultProductName').value || "Aking Custom Produkto";
+            const price = parseFloat(document.querySelector('#digitera-root #vaultProductPrice').value) || 0;
+            const dailySales = parseFloat(document.querySelector('#digitera-root #vaultDailySales').value) || 0;
+            
+            const dailyGross = price * dailySales;
+            const monthlyGross = dailyGross * 30;
+            
+            document.querySelector('#digitera-root #vaultOutDaily').innerText = "₱" + dailyGross.toLocaleString();
+            document.querySelector('#digitera-root #orgVaultOut').innerText = "₱" + monthlyGross.toLocaleString();
+            document.querySelector('#digitera-root #vaultLabelProduct').innerText = prodName;
+        }
+
+        // Engine 5 Dynamics
+        let currentAngle = 'nobs';
+        const scriptTemplates = {
+            nobs: {
+                badge: "👊 REAL TALK / NO-BS",
+                build: (prod, aud, pain) => {
+                    return `📌 HOOK (First 3 Seconds):\n` +
+                           `\"Aaminin ko sa'yo, hindi totoo na wala kang oras... sadyang busy ka lang mag-reply sa manual inquiries kasi wala ka pang sariling ${prod}!\"\n\n` +
+                           `📌 STORY / AGITATION:\n` +
+                           `Ganyan ang buhay ng mga ${aud} na walang modern system. Puyat gabi-gabi para sa konting sales habang ang iba, naka-automation na. Bakit mo pahihirapan ang sarili mo kung pwede mong i-automate ang storefront mo gamit ang pre-made assets?\n\n` +
+                           `📌 OFFER / ACTION:\n` +
+                           `Inilagay ko ang solusyon sa bio ko. I-click mo ang link at kunin mo ang ${prod} para ma-stop ang continuous cycle ng ${pain} simula ngayon!`;
+                }
+            },
+            secret: {
+                badge: "🕵️ SIKRETONG MALUPIT / CURIOSITY",
+                build: (prod, aud, pain) => {
+                    return `📌 HOOK (First 3 Seconds):\n` +
+                           `\"Ito ang isang malupit na sikreto kung kawit laging nalulutas ng mga top sellers ang ${pain} nang wala silang binabayarang ads...\"\n\n` +
+                           `📌 STORY / AGITATION:\n` +
+                           `Hindi dahil sa mayaman sila o sikat na influencer. Kundi dahil mayroon simula silang system framework na gumagana para sa kanila. Karamihan sa mga ${aud} ay mano-manong nagpapadala ng file, pero ang totoo, gumagamit lang kami ng ${prod} para ma-automate ito.\n\n` +
+                           `📌 OFFER / ACTION:\n` +
+                           `Huwag kang mag-alala, hindi mo kailangan ng technical skills. I-click mo lang ang link sa bio ko at kopyahin mo ang exact framework na ito ngayon!`;
+                }
+            },
+            dreamy: {
+                badge: "✨ INSPIRING / DREAMY",
+                build: (prod, aud, pain) => {
+                    return `📌 HOOK (First 2 Seconds):\n` +
+                           `\"Imagine waking up to automatic sales notifications nang hindi mo na kailangang dumaan sa paulit-ulit na ${pain}...\"\n\n` +
+                           `📌 STORY / AGITATION:\n` +
+                           `Para sa mga ${aud}, napakahirap magsimula kapag mag-isa ka lang at kulang ang kaalaman. Pero nung binuo ko ang ${prod}, doon ko na-realize na ang tamang digital tool ay kayang mag-generate ng income habang may sapat kang oras para sa pamilya mo.\n\n` +
+                           `📌 OFFER / ACTION:\n` +
+                           `Kaya mo rin itong simulan ngayon, partner. Pumunta ka lang sa profile ko, i-click ang link sa bio, at simulan natin ito nang magkasama.`;
+                }
+            },
+            tutorial: {
+                badge: "📱 STEP-BY-STEP TUTORIAL",
+                build: (prod, aud, pain) => {
+                    return `📌 HOOK (First 3 Seconds):\n` +
+                           `\"Ganito ko tinulungan ang isang ${aud} na malutas ang ${pain} gamit lang ang simple phone hack na ito...\"\n\n` +
+                           `📌 STORY / AGITATION:\n` +
+                           `Step 1: I-download ang aking ${prod}.\n` +
+                           `Step 2: Baguhin ang minimal details at ilagay ang iyong GCash details sa loob ng 5 minuto.\n` +
+                           `Step 3: I-upload ang video na tulad nito para kumuha ng free organic traffic.\n\n` +
+                           `📌 OFFER / ACTION:\n` +
+                           `Gusto mo ba ng kumpletong walkthrough kasama ang premium package link? Pumunta ka sa profile ko at i-click ang instant access link habang bukas pa ito!`;
+                }
+            }
+        };
+
+        function changeScriptAngle(angleKey) {
+            currentAngle = angleKey;
+            const keys = ['nobs', 'secret', 'dreamy', 'tutorial'];
+            keys.forEach(k => {
+                const btn = document.querySelector('#digitera-root #btnAngle-' + k);
+                if (k === angleKey) {
+                    btn.className = "p-3 bg-[#e5b842] text-[#0d091c] border-[#e5b842] rounded-lg text-xs font-black transition";
+                } else {
+                    btn.className = "p-3 bg-white/5 border border-white/10 text-slate-300 rounded-lg text-xs font-black transition hover:bg-[#e5b842]/15";
+                }
+            });
+            generateDynamicOrganicScript();
+        }
+
+        function generateDynamicOrganicScript() {
+            const prod = document.querySelector('#digitera-root #userProduct').value || "[Pangalan ng Produkto]";
+            const aud = document.querySelector('#digitera-root #userAudience').value || "[Target Audience]";
+            const pain = document.querySelector('#digitera-root #userPain').value || "[Problema]";
+            const currentObj = scriptTemplates[currentAngle] || scriptTemplates.nobs;
+            document.querySelector('#digitera-root #angleBadge').innerText = currentObj.badge;
+            const rawScript = currentObj.build(prod, aud, pain);
+            document.querySelector('#digitera-root #dynamicScriptOutput').value = rawScript;
+        }
+
+        // Clipboard copy functionality
+        function copyDynamicScript() {
+            const scriptText = document.querySelector('#digitera-root #dynamicScriptOutput').value;
+            if(!scriptText) return;
+            const dummy = document.createElement("textarea"); document.body.appendChild(dummy);
+            dummy.value = scriptText; dummy.select(); document.execCommand("copy"); document.body.removeChild(dummy);
+            triggerToast("Ang iyong unique organic script ay nakopya na sa clipboard! 🎬🔥");
+        }
+
+        // Init On Load Setup
+        document.addEventListener("DOMContentLoaded", function() {
+            calcOrganicSim(); 
+            runVaultCalculator(); 
+            changeScriptAngle('nobs');
+            updateChapter5Prompt();
+            initializeNicheBuilderGrid(); // Fire brand new database populated engine grid 11
+        });
+    </script>
+</div>
